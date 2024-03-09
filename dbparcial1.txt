@@ -1,0 +1,31 @@
+
+CREATE TABLE autores (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL
+);
+
+
+CREATE TABLE libros (
+    id INT PRIMARY KEY,
+    titulo VARCHAR(50) NOT NULL
+);
+
+
+CREATE TABLE posts (
+    id INT PRIMARY KEY,
+    titulo VARCHAR(50) NOT NULL,
+    contenido VARCHAR(50) NOT NULL,
+    fechapublicacion DATETIME NOT NULL,
+    autorid INT,
+    FOREIGN KEY (autorid) REFERENCES autores(id)
+);
+
+
+CREATE TABLE autorlibro (
+    autorid INT,
+    libroid INT,
+    orden INT,
+    PRIMARY KEY (autorid, libroid),
+    FOREIGN KEY (autorid) REFERENCES autores(id),
+    FOREIGN KEY (libroid) REFERENCES libros(id)
+);
